@@ -1,0 +1,26 @@
+{
+  "name": "Luyện thi VSTEP — Business English",
+  "short_name": "Luyện VSTEP",
+  "description": "100 câu ngữ pháp + 51 từ vựng Business English để luyện thi VSTEP",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f8fb",
+  "theme_color": "#2f5496",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

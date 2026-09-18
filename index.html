@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện thi VSTEP — Business English</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2f5496">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Luyện VSTEP">
+
+<style>
+:root{
+  --bg:#f7f8fb; --card:#ffffff; --text:#1a1d29; --text-2:#5b6072;
+  --accent:#2f5496; --accent-2:#1f3864; --border:#e2e5ec;
+  --green-bg:#dcf5e3; --green-tx:#146c2e; --red-bg:#fde2e2; --red-tx:#a3231f;
+  --yellow-bg:#fff3cd; --chip:#eef1f8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161f; --card:#1d2030; --text:#eef0f6; --text-2:#a0a5b8;
+    --accent:#6f95d6; --accent-2:#a9c1ee; --border:#2c3045;
+    --green-bg:#123a22; --green-tx:#7ee2a0; --red-bg:#3a1616; --red-tx:#ff9b96;
+    --yellow-bg:#3a3116; --chip:#252940;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161f; --card:#1d2030; --text:#eef0f6; --text-2:#a0a5b8;
+  --accent:#6f95d6; --accent-2:#a9c1ee; --border:#2c3045;
+  --green-bg:#123a22; --green-tx:#7ee2a0; --red-bg:#3a1616; --red-tx:#ff9b96;
+  --yellow-bg:#3a3116; --chip:#252940;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;
+}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 48px}
+header{padding:18px 4px 10px}
+h1{font-size:19px;margin:0 0 4px;color:var(--accent-2)}
+.sub{font-size:13px;color:var(--text-2);margin:0}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 0;margin-bottom:8px}
+.tab{
+  flex:0 0 auto;padding:8px 14px;border-radius:999px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font-size:13px;cursor:pointer;white-space:nowrap;
+}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chip-btn{
+  background:var(--chip);border:1px solid var(--border);border-radius:10px;padding:12px 10px;
+  cursor:pointer;text-align:left;color:var(--text);font-size:13px;line-height:1.4;
+}
+.chip-btn b{display:block;font-size:13px;color:var(--accent-2);margin-bottom:2px}
+.chip-btn small{color:var(--text-2)}
+.chip-btn:active{opacity:.8}
+.meta-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-2);margin-bottom:10px}
+.progress-bar{height:6px;border-radius:99px;background:var(--border);overflow:hidden;margin-bottom:14px}
+.progress-fill{height:100%;background:var(--accent);transition:width .25s}
+.qtext{font-size:16px;line-height:1.55;margin:0 0 16px;font-weight:500}
+.opt{
+  display:block;width:100%;text-align:left;padding:12px 14px;margin-bottom:8px;
+  border-radius:10px;border:1.5px solid var(--border);background:var(--card);color:var(--text);
+  font-size:14.5px;cursor:pointer;line-height:1.4;
+}
+.opt b{color:var(--accent);margin-right:8px}
+.opt.correct{background:var(--green-bg);border-color:var(--green-tx);color:var(--green-tx)}
+.opt.wrong{background:var(--red-bg);border-color:var(--red-tx);color:var(--red-tx)}
+.opt:disabled{cursor:default}
+.explain{
+  margin-top:14px;padding:12px 14px;border-radius:10px;font-size:13.5px;line-height:1.55;
+  background:var(--chip);border-left:4px solid var(--accent);white-space:pre-wrap;
+}
+.explain.ok{border-left-color:var(--green-tx)}
+.explain.bad{border-left-color:var(--red-tx)}
+.btnrow{display:flex;gap:10px;margin-top:16px}
+button.primary{
+  background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 18px;
+  font-size:14px;cursor:pointer;flex:1;
+}
+button.ghost{
+  background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:10px;
+  padding:11px 18px;font-size:14px;cursor:pointer;
+}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--chip);border-radius:10px;padding:12px;text-align:center}
+.stat .num{font-size:20px;font-weight:700;color:var(--accent-2)}
+.stat .lbl{font-size:11px;color:var(--text-2);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{padding:7px 6px;text-align:left;border-bottom:1px solid var(--border)}
+th{color:var(--text-2);font-weight:500;font-size:11.5px}
+.pct{font-weight:600;padding:2px 8px;border-radius:6px;display:inline-block}
+.pct.low{background:var(--red-bg);color:var(--red-tx)}
+.pct.high{background:var(--green-bg);color:var(--green-tx)}
+.pct.mid{background:var(--yellow-bg);color:var(--text)}
+.empty{text-align:center;color:var(--text-2);font-size:13px;padding:30px 10px}
+.timer{font-variant-numeric:tabular-nums;font-weight:600;color:var(--accent-2)}
+.sync-badge{font-size:11px;color:var(--text-2);display:flex;align-items:center;gap:5px}
+.dot{width:7px;height:7px;border-radius:50%;background:#9aa0b4}
+.dot.on{background:var(--green-tx)}
+.flash{
+  background:var(--chip);border:1.5px solid var(--border);border-radius:16px;
+  padding:36px 22px;text-align:center;min-height:150px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;cursor:pointer;margin-bottom:14px;
+}
+.flash .front{font-size:22px;font-weight:700;color:var(--accent-2);word-break:break-word}
+.flash .sub{font-size:12px;color:var(--text-2);margin-top:8px}
+.flash .back{font-size:16px;margin-top:14px;line-height:1.5}
+.flash .ex{font-size:13px;color:var(--text-2);margin-top:10px;font-style:italic}
+.flash .tap{font-size:12px;color:var(--text-2);margin-top:14px}
+.know-row{display:flex;gap:10px;margin-top:6px}
+.know-btn{
+  flex:1;padding:13px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--card);font-size:14px;cursor:pointer;color:var(--text);
+}
+.know-btn.no{border-color:var(--red-tx);color:var(--red-tx)}
+.know-btn.yes{border-color:var(--green-tx);color:var(--green-tx)}
+.type-prompt{font-size:18px;font-weight:600;color:var(--accent-2);margin-bottom:6px;line-height:1.5}
+.type-sub{font-size:12.5px;color:var(--text-2);margin-bottom:16px}
+.type-input{
+  width:100%;padding:13px 14px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-size:15px;margin-bottom:12px;
+}
+.type-input.ok{border-color:var(--green-tx);background:var(--green-bg)}
+.type-input.bad{border-color:var(--red-tx);background:var(--red-bg)}
+.type-feedback{font-size:13.5px;line-height:1.55;padding:12px 14px;border-radius:10px;background:var(--chip);margin-bottom:12px;border-left:4px solid var(--accent)}
+.type-feedback.ok{border-left-color:var(--green-tx)}
+.type-feedback.bad{border-left-color:var(--red-tx)}
+.blank-sentence{font-size:16px;line-height:1.6;margin-bottom:16px}
+.blank-mark{border-bottom:2px solid var(--accent);padding:0 4px;font-weight:600;color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Luyện thi VSTEP — Business English</h1>
+    <p class="sub">Bản chia sẻ công khai · 100 câu ngữ pháp + 51 từ vựng · tiến độ lưu riêng trên từng thiết bị</p>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-tab="home">Ngữ pháp</div>
+    <div class="tab" data-tab="vocab">Từ vựng</div>
+    <div class="tab" data-tab="dash">Tiến độ</div>
+  </div>
+
+  <div id="app"></div>
+</div>
+
+<script id="data-holder" type="application/json">[{"stt": 1, "code": "P1.1", "de": 1, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "We have told you to expect to see big ups and downs in the stock market; ______, don't panic if your stocks have lost a lot of value.", "opts": {"A": "therefore", "B": "since", "C": "however", "D": "otherwise"}, "ans": "A", "expl": "Vế đầu (đã báo trước sẽ có biến động) chính là LÝ DO để không hoảng loạn → quan hệ nhân quả → therefore. Nếu dùng 'however' thì vế đầu phải tạo cảm giác đáng lo trước đã."}, {"stt": 2, "code": "P1.2", "de": 1, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "We are upgrading our IT infrastructure ______ our employees can work more efficiently and securely.", "opts": {"A": "although", "B": "after", "C": "as if", "D": "so that"}, "ans": "D", "expl": "Vế sau nêu MỤC ĐÍCH của việc nâng cấp (để nhân viên làm việc hiệu quả hơn) → so that."}, {"stt": 3, "code": "P1.3", "de": 1, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "Chinese-made goods ______ extremely popular in recent years with US consumers looking for low prices.", "opts": {"A": "are", "B": "were", "C": "had been", "D": "have been"}, "ans": "D", "expl": "Từ khóa 'in recent years' = khoảng thời gian kéo dài đến hiện tại → Hiện tại hoàn thành → have been."}, {"stt": 4, "code": "P1.4", "de": 1, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "Several staff members left the sales conference after the manager ______ his closing speech.", "opts": {"A": "was finishing", "B": "would finish", "C": "had finished", "D": "has finished"}, "ans": "C", "expl": "Hai hành động quá khứ: 'kết thúc bài phát biểu' xảy ra TRƯỚC 'rời hội nghị' → việc xảy ra trước dùng Quá khứ hoàn thành → had finished."}, {"stt": 5, "code": "P1.5", "de": 1, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "Advertising ______ not only to promote sales but also to upgrade a company's image.", "opts": {"A": "helps", "B": "helped", "C": "is helping", "D": "help"}, "ans": "A", "expl": "'Advertising' là danh từ không đếm được → chia số ít. Câu nêu chức năng chung, luôn đúng → Hiện tại đơn → helps."}, {"stt": 6, "code": "P1.6", "de": 1, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "The new advertising campaign is designed to appeal ______ younger consumers.", "opts": {"A": "to", "B": "for", "C": "at", "D": "of"}, "ans": "A", "expl": "Cụm cố định: appeal TO somebody = thu hút ai đó. Phải học thuộc, không suy luận."}, {"stt": 7, "code": "P1.7", "de": 1, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "Our customer service team is skilled ______ resolving complex issues efficiently.", "opts": {"A": "at", "B": "of", "C": "in", "D": "on"}, "ans": "A", "expl": "Cụm cố định: skilled AT + V-ing = giỏi trong việc gì. (Thực tế 'skilled in' cũng dùng được, nhưng với V-ing thì 'at' chuẩn hơn.)"}, {"stt": 8, "code": "P1.8", "de": 1, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "Expansion into the cell phone market would require a ______ trained workforce as well as massive capital investment.", "opts": {"A": "high", "B": "highness", "C": "highly", "D": "higher"}, "ans": "C", "expl": "Chỗ trống đứng TRƯỚC 'trained' (phân từ đóng vai tính từ) → cần TRẠNG TỪ bổ nghĩa → highly. Không dịch nghĩa, chỉ nhìn vị trí."}, {"stt": 9, "code": "P1.9", "de": 1, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "The ______ campaign for our new product will include social media advertising and special discounts.", "opts": {"A": "promote", "B": "promoting", "C": "promotion", "D": "promotional"}, "ans": "D", "expl": "Chỗ trống nằm GIỮA mạo từ 'The' và danh từ 'campaign' → cần TÍNH TỪ → promotional. Bẫy: nhiều người chọn 'promotion' (danh từ)."}, {"stt": 10, "code": "P1.10", "de": 1, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "At the beginning of this month, I signed a ______ with your company for an office renovation project.", "opts": {"A": "contract", "B": "newsletter", "C": "letter", "D": "memo"}, "ans": "A", "expl": "Ký kết cho một dự án giữa hai bên → contract (hợp đồng). Newsletter = bản tin, memo = bản ghi nhớ nội bộ."}, {"stt": 11, "code": "P1.11", "de": 1, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "The candidates who have been ______ for the position of Managing Director will be contacted this week.", "opts": {"A": "short-changed", "B": "short-sighted", "C": "short-handed", "D": "short-listed"}, "ans": "D", "expl": "short-listed = được đưa vào danh sách rút gọn. (short-changed = bị trả thiếu tiền; short-sighted = thiển cận; short-handed = thiếu nhân lực.)"}, {"stt": 12, "code": "P1.12", "de": 1, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "The budget for the new marketing campaign is ______ at $500,000, which includes both digital and traditional expenses.", "opts": {"A": "imagined", "B": "guessed", "C": "estimated", "D": "judged"}, "ans": "C", "expl": "Cụm chuẩn trong kinh doanh: be estimated AT + số tiền = được ước tính ở mức."}, {"stt": 13, "code": "P1.13", "de": 1, "phan": "SC", "dang": "G", "dangTen": "Cụm động từ (Phrasal Verbs)", "q": "Our company is planning to ______ the smaller competitor to expand our market share.", "opts": {"A": "take over", "B": "take off", "C": "take on", "D": "take after"}, "ans": "A", "expl": "take over = thâu tóm, tiếp quản (một công ty khác). take off = bùng nổ; take on = nhận thêm việc/người; take after = giống (người thân)."}, {"stt": 14, "code": "P1.14", "de": 1, "phan": "SC", "dang": "H", "dangTen": "Cấu trúc động từ đặc biệt (Verb Patterns)", "q": "Before Annie ran out for a meeting yesterday, she had Ms. Brunelli ______ the new clerk around the premises.", "opts": {"A": "show", "B": "showed", "C": "showing", "D": "was showed"}, "ans": "A", "expl": "Cấu trúc SAI KHIẾN CHỦ ĐỘNG: have + NGƯỜI + V NGUYÊN THỂ. Ms. Brunelli tự thực hiện hành động → show."}, {"stt": 15, "code": "P1.15", "de": 1, "phan": "SC", "dang": "I", "dangTen": "Mạo từ & Từ hạn định (Articles / Determiners)", "q": "______ merchandise has been packaged and is now ready to be transported from the warehouse to the retail outlets.", "opts": {"A": "A", "B": "Some", "C": "Each", "D": "These"}, "ans": "B", "expl": "'merchandise' là danh từ KHÔNG ĐẾM ĐƯỢC (xác nhận bởi 'has been' số ít) → không dùng A/Each/These → Some."}, {"stt": 16, "code": "P1.16", "de": 1, "phan": "ED", "dang": "F2", "dangTen": "Despite / In spite of / Although + sai loại", "q": "______ the cost was high, we decided to carry out the project.", "opts": {"A": "In spite of", "B": "was", "C": "to carry out", "D": "the"}, "ans": "A", "expl": "In spite of + DANH TỪ/V-ing, không bao giờ + mệnh đề (S+V). Ở đây theo sau là 'the cost was high' (mệnh đề) → phải đổi thành 'Although'. (Sửa thành: Although / In spite of the high cost)"}, {"stt": 17, "code": "P1.17", "de": 1, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "If you're not well, you had better ______ Ann to go to the conference instead.", "opts": {"A": "well", "B": "to ask", "C": "to go", "D": "instead"}, "ans": "B", "expl": "had better + V NGUYÊN THỂ (không có 'to'). → had better ask. (Sửa thành: ask)"}, {"stt": 18, "code": "P1.18", "de": 1, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "Without operating funds, a firm cannot continue to ______ business.", "opts": {"A": "Without", "B": "a", "C": "continue", "D": "make"}, "ans": "D", "expl": "Cụm cố định: DO business (không phải 'make business'). Ghi nhớ: do business with someone. (Sửa thành: do business)"}, {"stt": 19, "code": "P1.19", "de": 1, "phan": "ED", "dang": "F3", "dangTen": "Dùng sai từ loại (động từ thay cho danh từ)", "q": "At our company, raises and promotions are based on performance, not on ______.", "opts": {"A": "raises", "B": "promotions", "C": "based", "D": "senior"}, "ans": "D", "expl": "Sau giới từ 'on' cần DANH TỪ, song song với 'performance' (danh từ). 'senior' là tính từ → phải đổi thành 'seniority' (thâm niên). (Sửa thành: seniority)"}, {"stt": 20, "code": "P1.20", "de": 1, "phan": "ED", "dang": "F1", "dangTen": "Danh từ không đếm được bị thêm 's'", "q": "The assembly-line workers will be more productive when the company installs the new ______.", "opts": {"A": "assembly-line", "B": "productive", "C": "installs", "D": "equipments"}, "ans": "D", "expl": "'equipment' là danh từ KHÔNG ĐẾM ĐƯỢC → không bao giờ thêm 's'. (Sửa thành: equipment)"}, {"stt": 21, "code": "P2.1", "de": 2, "phan": "SC", "dang": "J", "dangTen": "Đại từ quan hệ & Mệnh đề danh ngữ", "q": "The firm, ______ organized business travel and holidays for top executives, was one of the biggest travel firms in the UK.", "opts": {"A": "whom", "B": "where", "C": "that", "D": "which"}, "ans": "D", "expl": "Có DẤU PHẨY → mệnh đề quan hệ KHÔNG xác định → bắt buộc dùng WHICH (không bao giờ dùng 'that' sau dấu phẩy). 'whom' chỉ dùng cho người."}, {"stt": 22, "code": "P2.2", "de": 2, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "Fast-Track advertises vacancies only inside the company ______ it believes in offering career opportunities to its staff.", "opts": {"A": "although", "B": "as", "C": "when", "D": "so that"}, "ans": "B", "expl": "Vế sau nêu LÝ DO (vì công ty tin vào việc trao cơ hội nội bộ) → 'as' = because. Không phải 'so that' vì đây là lý do, không phải mục đích."}, {"stt": 23, "code": "P2.3", "de": 2, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "Starting next month, salaries ______ paid through a newly installed electronic-paying system.", "opts": {"A": "are", "B": "were", "C": "is", "D": "will be"}, "ans": "D", "expl": "'Starting next month' → sự việc bắt đầu ở tương lai → will be (bị động tương lai)."}, {"stt": 24, "code": "P2.4", "de": 2, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "A number of small companies will go bankrupt when the government ______ the legal working hours to thirty-four hours a week.", "opts": {"A": "reduces", "B": "is reducing", "C": "reduced", "D": "will reduce"}, "ans": "A", "expl": "QUY TẮC QUAN TRỌNG: mệnh đề bắt đầu bằng WHEN nói về tương lai thì dùng HIỆN TẠI ĐƠN, không dùng will → reduces."}, {"stt": 25, "code": "P2.5", "de": 2, "phan": "SC", "dang": "C", "dangTen": "Câu điều kiện (Conditionals)", "q": "If personal income taxes had been lowered, the national economy ______ much more quickly.", "opts": {"A": "recovered", "B": "has recovered", "C": "has been recovered", "D": "would have recovered"}, "ans": "D", "expl": "Vế IF có 'had been lowered' (had + V3) → Điều kiện LOẠI 3 → vế chính dùng would have + V3 → would have recovered."}, {"stt": 26, "code": "P2.6", "de": 2, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "In 2004, Internet companies and small business web sites in Canada spent more than $2 billion ______ TV advertisement.", "opts": {"A": "in", "B": "on", "C": "at", "D": "to"}, "ans": "B", "expl": "Cụm cố định: spend money ON something = chi tiền vào việc gì."}, {"stt": 27, "code": "P2.7", "de": 2, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "The manager made it quite clear that she was very disappointed ______ the staff's performance.", "opts": {"A": "at", "B": "in", "C": "on", "D": "to"}, "ans": "A", "expl": "disappointed AT + sự việc/kết quả. (Trong thực tế 'disappointed with/in' cũng phổ biến, nhưng với kết quả cụ thể thì 'at' là đáp án chuẩn của đề.)"}, {"stt": 28, "code": "P2.8", "de": 2, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "The proposed budget increases would make it possible to give added ______ to each sector of the firm.", "opts": {"A": "supported", "B": "supporting", "C": "support", "D": "supportive"}, "ans": "C", "expl": "Chỗ trống đứng SAU tính từ 'added' → cần DANH TỪ làm tân ngữ cho 'give' → support."}, {"stt": 29, "code": "P2.9", "de": 2, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "After ______ reading all the resumes, the board will decide which applicants should be invited.", "opts": {"A": "carefully", "B": "caring", "C": "carefulness", "D": "care"}, "ans": "A", "expl": "Chỗ trống đứng TRƯỚC V-ing 'reading' → cần TRẠNG TỪ bổ nghĩa cho hành động → carefully."}, {"stt": 30, "code": "P2.10", "de": 2, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "Advances in technology have made mobile phones smaller and affordable to the ______ market.", "opts": {"A": "buyer's", "B": "export", "C": "niche", "D": "mass"}, "ans": "D", "expl": "mass market = thị trường đại chúng (phù hợp với 'affordable' = giá phải chăng, nhiều người mua được). Niche market ngược lại = thị trường ngách."}, {"stt": 31, "code": "P2.11", "de": 2, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "The bank demanded ______ in the amount of $50,000 from GorTech Computers for costs incurred from the failed system.", "opts": {"A": "revenue", "B": "income", "C": "compensation", "D": "loss"}, "ans": "C", "expl": "Đòi tiền vì thiệt hại gây ra → compensation (khoản bồi thường)."}, {"stt": 32, "code": "P2.12", "de": 2, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "For a limited time only, all of our customers can take ______ of our free online contents.", "opts": {"A": "service", "B": "advantage", "C": "improvement", "D": "responsibility"}, "ans": "B", "expl": "Cụm cố định: take advantage OF = tận dụng."}, {"stt": 33, "code": "P2.13", "de": 2, "phan": "SC", "dang": "G", "dangTen": "Cụm động từ (Phrasal Verbs)", "q": "The government wants to ______ a new scheme to encourage people to start their own businesses.", "opts": {"A": "hand out", "B": "run out", "C": "look out", "D": "work out"}, "ans": "D", "expl": "work out a scheme = vạch ra, xây dựng một kế hoạch. hand out = phát ra; run out = cạn kiệt; look out = coi chừng."}, {"stt": 34, "code": "P2.14", "de": 2, "phan": "SC", "dang": "H", "dangTen": "Cấu trúc động từ đặc biệt (Verb Patterns)", "q": "The firm gets its product ______ safely and in a timely manner; otherwise, it will seek an alternative shipper.", "opts": {"A": "package", "B": "to package", "C": "packaged", "D": "packaging"}, "ans": "C", "expl": "Cấu trúc SAI KHIẾN BỊ ĐỘNG: get + VẬT + V3. Sản phẩm BỊ đóng gói (không tự đóng gói) → packaged."}, {"stt": 35, "code": "P2.15", "de": 2, "phan": "SC", "dang": "I", "dangTen": "Mạo từ & Từ hạn định (Articles / Determiners)", "q": "They are developing ______ one-hour program that may interest older viewers.", "opts": {"A": "many", "B": "an", "C": "a", "D": "any"}, "ans": "C", "expl": "Chọn a/an theo ÂM ĐẦU, không theo chữ cái. 'one' đọc là /wʌn/ - bắt đầu bằng phụ âm /w/ → dùng 'a', không dùng 'an'."}, {"stt": 36, "code": "P2.16", "de": 2, "phan": "ED", "dang": "F7", "dangTen": "Đại từ, mạo từ, thì", "q": "Small businesses often confine ______ operations to a single neighborhood.", "opts": {"A": "Small", "B": "theirs", "C": "to", "D": "neighborhood"}, "ans": "B", "expl": "Trước danh từ ('operations') dùng TÍNH TỪ SỞ HỮU 'their'. 'theirs' là đại từ sở hữu, đứng một mình, không có danh từ theo sau. (Sửa thành: their)"}, {"stt": 37, "code": "P2.17", "de": 2, "phan": "ED", "dang": "F2", "dangTen": "Despite / In spite of / Although + sai loại", "q": "______ offering them a 20% discount, we didn't get the order.", "opts": {"A": "Despite of", "B": "a", "C": "discount", "D": "the order"}, "ans": "A", "expl": "KHÔNG BAO GIỜ có 'Despite of'. Chỉ có: Despite + N/V-ing HOẶC In spite of + N/V-ing. (Sửa thành: Despite)"}, {"stt": 38, "code": "P2.18", "de": 2, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "Computers used ______ much bigger than they are today.", "opts": {"A": "to being", "B": "much", "C": "than", "D": "are"}, "ans": "A", "expl": "used to + V NGUYÊN THỂ (diễn tả thói quen/trạng thái trong quá khứ). Phân biệt với 'be used to + V-ing' (quen với việc gì). (Sửa thành: used to be)"}, {"stt": 39, "code": "P2.19", "de": 2, "phan": "ED", "dang": "F1", "dangTen": "Danh từ không đếm được bị thêm 's'", "q": "Do you have any previous ______ of this type of work?", "opts": {"A": "Do", "B": "any", "C": "experiences", "D": "of"}, "ans": "C", "expl": "'experience' mang nghĩa KINH NGHIỆM là danh từ không đếm được → không thêm 's'. (Chỉ đếm được khi nghĩa là 'trải nghiệm cụ thể'.) (Sửa thành: experience)"}, {"stt": 40, "code": "P2.20", "de": 2, "phan": "ED", "dang": "F5", "dangTen": "Lỗi so sánh", "q": "Of the three advertising agencies, Dentsu Inc. has had the ______ sales.", "opts": {"A": "Of", "B": "advertising", "C": "has", "D": "higher"}, "ans": "D", "expl": "So sánh từ 3 đối tượng TRỞ LÊN → dùng SO SÁNH NHẤT (highest). 'higher' chỉ dùng khi so sánh 2 đối tượng. (Sửa thành: highest)"}, {"stt": 41, "code": "P3.1", "de": 3, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "Repairs for our products are free of charge ______ they are done by our local dealerships.", "opts": {"A": "although", "B": "until", "C": "while", "D": "if"}, "ans": "D", "expl": "Miễn phí VỚI ĐIỀU KIỆN sửa tại đại lý địa phương → điều kiện → if."}, {"stt": 42, "code": "P3.2", "de": 3, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "You may choose any item from this catalogue. ______, you cannot choose more than two.", "opts": {"A": "However", "B": "Besides", "C": "Therefore", "D": "Otherwise"}, "ans": "A", "expl": "Vế đầu cho quyền tự do chọn, vế sau đặt giới hạn → ĐỐI LẬP → However."}, {"stt": 43, "code": "P3.3", "de": 3, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "Mrs. Brown was driving to work when the accident happened and ______ her car.", "opts": {"A": "has damaged", "B": "was damaging", "C": "damaged", "D": "will damage"}, "ans": "C", "expl": "Song song với 'happened' (quá khứ đơn) → dùng cùng thì → damaged."}, {"stt": 44, "code": "P3.4", "de": 3, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "Their new \"own brand\" instant coffee tastes very good, so it's not surprising that it ______ more and more popular now.", "opts": {"A": "will become", "B": "is becoming", "C": "becomes", "D": "became"}, "ans": "B", "expl": "'more and more... now' = tình trạng đang thay đổi ngay lúc này → Hiện tại tiếp diễn → is becoming."}, {"stt": 45, "code": "P3.5", "de": 3, "phan": "SC", "dang": "C", "dangTen": "Câu điều kiện (Conditionals)", "q": "We would face severe financial problems if we ______ able to renew this contract.", "opts": {"A": "aren't", "B": "haven't been", "C": "hadn't been", "D": "weren't"}, "ans": "D", "expl": "Vế chính có 'would face' (không có have) → Điều kiện LOẠI 2 → vế IF dùng quá khứ đơn, với to-be dùng 'were' cho mọi ngôi → weren't."}, {"stt": 46, "code": "P3.6", "de": 3, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "It is reported that 70% of employers have admitted ______ rejecting a candidate because of their bad online behaviour.", "opts": {"A": "to", "B": "for", "C": "on", "D": "at"}, "ans": "A", "expl": "Cụm cố định: admit TO + V-ing = thừa nhận đã làm gì."}, {"stt": 47, "code": "P3.7", "de": 3, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "Our team has been successful ______ securing new contracts, significantly boosting our annual revenue.", "opts": {"A": "on", "B": "of", "C": "to", "D": "in"}, "ans": "D", "expl": "Cụm cố định: successful IN + V-ing = thành công trong việc gì."}, {"stt": 48, "code": "P3.8", "de": 3, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "The nuclear power plant will not become ______ until all the safety equipment has been thoroughly tested.", "opts": {"A": "operate", "B": "operation", "C": "operative", "D": "operatively"}, "ans": "C", "expl": "Sau động từ liên kết 'become' phải là TÍNH TỪ → operative."}, {"stt": 49, "code": "P3.9", "de": 3, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "You create a story about your CV that sounds ______ but doesn't pass close examination.", "opts": {"A": "believing", "B": "believable", "C": "believably", "D": "belief"}, "ans": "B", "expl": "Sau động từ liên kết 'sounds' phải là TÍNH TỪ → believable."}, {"stt": 50, "code": "P3.10", "de": 3, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "These online sales and special ______ on books and CDs are offered only for a limited time.", "opts": {"A": "deliveries", "B": "packages", "C": "discounts", "D": "returns"}, "ans": "C", "expl": "Đi cùng 'online sales' và 'for a limited time' → discounts (giảm giá)."}, {"stt": 51, "code": "P3.11", "de": 3, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "The bank won't lend you the money without some ______ that you will pay it back.", "opts": {"A": "profit", "B": "charge", "C": "interest", "D": "guarantee"}, "ans": "D", "expl": "Ngân hàng cần sự bảo đảm sẽ được hoàn trả → guarantee."}, {"stt": 52, "code": "P3.12", "de": 3, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "The ______ of the contract is three years, with an option to renew for an additional two years.", "opts": {"A": "law", "B": "detail", "C": "rule", "D": "term"}, "ans": "D", "expl": "term of the contract = thời hạn hợp đồng."}, {"stt": 53, "code": "P3.13", "de": 3, "phan": "SC", "dang": "G", "dangTen": "Cụm động từ (Phrasal Verbs)", "q": "The abbreviation ROI ______ Return on Investment, a key metric we use to evaluate profitability.", "opts": {"A": "stands for", "B": "stays over", "C": "keeps to", "D": "brings about"}, "ans": "A", "expl": "stand for = là viết tắt của, đại diện cho."}, {"stt": 54, "code": "P3.14", "de": 3, "phan": "SC", "dang": "H", "dangTen": "Cấu trúc động từ đặc biệt (Verb Patterns)", "q": "A wise consumer gets his or her phone order ______ in writing before submitting payment.", "opts": {"A": "confirming", "B": "to confirm", "C": "confirmed", "D": "confirm"}, "ans": "C", "expl": "get + VẬT (order) + V3 → order được xác nhận bởi bên khác → confirmed."}, {"stt": 55, "code": "P3.15", "de": 3, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "______ marketing is concerned, the best thing is to talk with the Sales Manager.", "opts": {"A": "As much", "B": "As far as", "C": "As for", "D": "As with"}, "ans": "B", "expl": "Cấu trúc cố định: As far as ... is concerned = xét về khía cạnh..., liên quan đến..."}, {"stt": 56, "code": "P3.16", "de": 3, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "This method is not ______ for us to solve the problem.", "opts": {"A": "This", "B": "enough good", "C": "us", "D": "to solve"}, "ans": "B", "expl": "'enough' đứng SAU tính từ (good enough), nhưng đứng TRƯỚC danh từ (enough money). (Sửa thành: good enough)"}, {"stt": 57, "code": "P3.17", "de": 3, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "You had better ______ the main points at the end of your presentation.", "opts": {"A": "to repeat", "B": "at", "C": "of", "D": "presentation"}, "ans": "A", "expl": "had better + V NGUYÊN THỂ, không có 'to'. (Câu này lặp lại cùng bẫy với P1.17.) (Sửa thành: repeat)"}, {"stt": 58, "code": "P3.18", "de": 3, "phan": "ED", "dang": "F2", "dangTen": "Despite / In spite of / Although + sai loại", "q": "______ he had a good salary, he was unhappy in his job.", "opts": {"A": "In spite of", "B": "had", "C": "unhappy", "D": "his"}, "ans": "A", "expl": "In spite of + N/V-ing. Theo sau là mệnh đề 'he had a good salary' → phải dùng 'Although'. (Sửa thành: Although)"}, {"stt": 59, "code": "P3.19", "de": 3, "phan": "ED", "dang": "F7", "dangTen": "Đại từ, mạo từ, thì", "q": "If our plane ______ late, we will miss our meeting with Mr. Paul.", "opts": {"A": "our", "B": "arrived", "C": "will miss", "D": "with"}, "ans": "B", "expl": "Vế chính có 'will miss' → Điều kiện LOẠI 1 → vế IF phải dùng HIỆN TẠI ĐƠN → arrives. (Sửa thành: arrives)"}, {"stt": 60, "code": "P3.20", "de": 3, "phan": "ED", "dang": "F1", "dangTen": "Danh từ không đếm được bị thêm 's'", "q": "I asked if we could have just a little ______ to prepare for the meeting.", "opts": {"A": "asked", "B": "could have", "C": "more times", "D": "for the meeting"}, "ans": "C", "expl": "'time' với nghĩa THỜI GIAN là không đếm được → 'a little more time'. ('times' chỉ dùng khi nghĩa là 'số lần'.) (Sửa thành: more time)"}, {"stt": 61, "code": "P4.1", "de": 4, "phan": "SC", "dang": "J", "dangTen": "Đại từ quan hệ & Mệnh đề danh ngữ", "q": "In order to stay competitive in the global market, we should know ______ our customers need.", "opts": {"A": "which", "B": "when", "C": "that", "D": "what"}, "ans": "D", "expl": "Sau 'know' cần mệnh đề danh ngữ làm tân ngữ, và phía trước KHÔNG có danh từ nào để 'that/which' bổ nghĩa → dùng WHAT (= cái mà)."}, {"stt": 62, "code": "P4.2", "de": 4, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "The shipment of the new office furniture was delayed, ______ it arrived a week later than expected.", "opts": {"A": "so", "B": "but", "C": "or", "D": "nor"}, "ans": "A", "expl": "Bị trì hoãn (nguyên nhân) → đến muộn 1 tuần (kết quả) → quan hệ nhân quả → so."}, {"stt": 63, "code": "P4.3", "de": 4, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "When Ms. Samantha ______ Beijing for a workshop next week, she will stay at the Ramada Hotel.", "opts": {"A": "visits", "B": "visited", "C": "is visiting", "D": "was visiting"}, "ans": "A", "expl": "Bẫy kinh điển: thấy 'next week' vội chọn thì tương lai. Nhưng mệnh đề WHEN chỉ tương lai phải dùng HIỆN TẠI ĐƠN → visits."}, {"stt": 64, "code": "P4.4", "de": 4, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "I ______ the approval of three committee members before Bob signed off on the project.", "opts": {"A": "already get", "B": "had already gotten", "C": "have already gotten", "D": "was already getting"}, "ans": "B", "expl": "BẪY 'already': mốc so sánh ở đây là 'Bob signed off' (quá khứ), nên việc xảy ra trước phải dùng Quá khứ hoàn thành → had already gotten. KHÔNG phải have already gotten."}, {"stt": 65, "code": "P4.5", "de": 4, "phan": "SC", "dang": "C", "dangTen": "Câu điều kiện (Conditionals)", "q": "If insolvency laws do not change and continue to favor creditors, many small-scale companies ______ bankrupt.", "opts": {"A": "go", "B": "have gone", "C": "will go", "D": "went"}, "ans": "C", "expl": "Vế IF dùng hiện tại đơn ('do not change') → Điều kiện LOẠI 1 → vế chính dùng will + V → will go."}, {"stt": 66, "code": "P4.6", "de": 4, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "Our new software system is capable ______ handling large volumes of data.", "opts": {"A": "on", "B": "at", "C": "in", "D": "of"}, "ans": "D", "expl": "Cụm cố định: capable OF + V-ing = có khả năng làm gì."}, {"stt": 67, "code": "P4.7", "de": 4, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "We plan to launch our new marketing campaign ______ Christmas to maximize seasonal sales opportunities.", "opts": {"A": "at", "B": "on", "C": "in", "D": "to"}, "ans": "A", "expl": "Giới từ thời gian với dịp lễ: AT Christmas, AT Easter (nhưng ON Christmas Day nếu chỉ ngày cụ thể)."}, {"stt": 68, "code": "P4.8", "de": 4, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "It took the department almost a week to receive a ______ from the manufacturer.", "opts": {"A": "respond", "B": "response", "C": "responsive", "D": "responding"}, "ans": "B", "expl": "Chỗ trống đứng SAU mạo từ 'a' → cần DANH TỪ → response."}, {"stt": 69, "code": "P4.9", "de": 4, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "The team's ______ performance this quarter has significantly boosted our overall revenue.", "opts": {"A": "excellently", "B": "excellence", "C": "excellent", "D": "excel"}, "ans": "C", "expl": "Chỗ trống đứng TRƯỚC danh từ 'performance' → cần TÍNH TỪ → excellent."}, {"stt": 70, "code": "P4.10", "de": 4, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "The company is offering ______ of its new skincare product to allow customers to try it before buying.", "opts": {"A": "free samples", "B": "free consulting", "C": "interest-free credit", "D": "great after-sales service"}, "ans": "A", "expl": "Cho dùng thử trước khi mua → free samples (hàng mẫu miễn phí)."}, {"stt": 71, "code": "P4.11", "de": 4, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "Our biggest problem is that we spend too much. We need to ______ costs because we are having problems paying our bills.", "opts": {"A": "increase", "B": "bear", "C": "cover", "D": "cut"}, "ans": "D", "expl": "Chi tiêu quá nhiều, khó trả hóa đơn → phải CẮT GIẢM → cut costs."}, {"stt": 72, "code": "P4.12", "de": 4, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "He works as a furniture ______ who buys and sells tables and chairs in large quantities to the local shops.", "opts": {"A": "retailer", "B": "assistant", "C": "wholesaler", "D": "manager"}, "ans": "C", "expl": "Bán SỐ LƯỢNG LỚN cho các cửa hàng → wholesaler (nhà bán buôn). Retailer bán lẻ trực tiếp cho người tiêu dùng."}, {"stt": 73, "code": "P4.13", "de": 4, "phan": "SC", "dang": "G", "dangTen": "Cụm động từ (Phrasal Verbs)", "q": "The new marketing campaign really helped the product ______, increasing sales by over 50% within the first month.", "opts": {"A": "take off", "B": "give away", "C": "keep up", "D": "come about"}, "ans": "A", "expl": "take off = bùng nổ, tăng trưởng mạnh (doanh số). Khớp với 'increasing sales by over 50%'."}, {"stt": 74, "code": "P4.14", "de": 4, "phan": "SC", "dang": "H", "dangTen": "Cấu trúc động từ đặc biệt (Verb Patterns)", "q": "I received a text message from Takeshi yesterday, and it mentioned that they had the equipment ______ yesterday.", "opts": {"A": "shipped", "B": "ship", "C": "to ship", "D": "shipping"}, "ans": "A", "expl": "have + VẬT (equipment) + V3 → thiết bị ĐƯỢC vận chuyển → shipped."}, {"stt": 75, "code": "P4.15", "de": 4, "phan": "SC", "dang": "H", "dangTen": "Cấu trúc động từ đặc biệt (Verb Patterns)", "q": "Newcomers must ______ two basic computer sessions before they move on to an intermediate course.", "opts": {"A": "completing", "B": "complete", "C": "to complete", "D": "completes"}, "ans": "B", "expl": "Sau động từ khuyết thiếu MUST luôn là V NGUYÊN THỂ (không to, không -s, không -ing) → complete."}, {"stt": 76, "code": "P4.16", "de": 4, "phan": "ED", "dang": "F2", "dangTen": "Despite / In spite of / Although + sai loại", "q": "______ the tight deadline, the team managed to finish the report on time.", "opts": {"A": "Although", "B": "deadline", "C": "to finish", "D": "on time"}, "ans": "A", "expl": "Ngược lại với các câu trên: 'Although' phải đi với MỆNH ĐỀ, nhưng theo sau là cụm danh từ 'the tight deadline' → phải đổi thành 'Despite'. (Sửa thành: Despite / In spite of)"}, {"stt": 77, "code": "P4.17", "de": 4, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "The manager suggested ______ the meeting until next week.", "opts": {"A": "suggested", "B": "to postpone", "C": "until", "D": "next week"}, "ans": "B", "expl": "Động từ SUGGEST luôn đi với V-ing, không đi với to V → suggested postponing. (Sửa thành: postponing)"}, {"stt": 78, "code": "P4.18", "de": 4, "phan": "ED", "dang": "F3", "dangTen": "Dùng sai từ loại (động từ thay cho danh từ)", "q": "The company suffered a significant ______ due to poor financial planning.", "opts": {"A": "suffered", "B": "a", "C": "lose", "D": "planning"}, "ans": "C", "expl": "Sau 'a significant' (mạo từ + tính từ) cần DANH TỪ. 'lose' là động từ → phải đổi thành 'loss' (danh từ). (Sửa thành: loss)"}, {"stt": 79, "code": "P4.19", "de": 4, "phan": "ED", "dang": "F6", "dangTen": "Cấu trúc song song (Parallel structure)", "q": "Employees are expected to work efficiently, follow company policies, and ______ punctual.", "opts": {"A": "to work", "B": "follow", "C": "being", "D": "punctual"}, "ans": "C", "expl": "CẤU TRÚC SONG SONG: 3 hành động phải cùng dạng - to work, (to) follow, and (to) be. 'being' phá vỡ tính song song → phải đổi thành 'be'. (Sửa thành: be)"}, {"stt": 80, "code": "P4.20", "de": 4, "phan": "ED", "dang": "F1", "dangTen": "Danh từ không đếm được bị thêm 's'", "q": "We need more ______ before making a final decision.", "opts": {"A": "need", "B": "informations", "C": "before", "D": "decision"}, "ans": "B", "expl": "'information' là danh từ KHÔNG ĐẾM ĐƯỢC → không bao giờ thêm 's'. (Sửa thành: information)"}, {"stt": 81, "code": "P5.1", "de": 5, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "We need to cut costs; ______, we risk exceeding our budget for this fiscal quarter.", "opts": {"A": "however", "B": "otherwise", "C": "moreover", "D": "therefore"}, "ans": "B", "expl": "Nghĩa: 'nếu KHÔNG cắt giảm chi phí thì sẽ vượt ngân sách' → otherwise (nếu không thì)."}, {"stt": 82, "code": "P5.2", "de": 5, "phan": "SC", "dang": "A", "dangTen": "Liên từ & Từ nối (Conjunctions / Transitions)", "q": "I hope that I will finish the sales report on time, ______ I can't guarantee it.", "opts": {"A": "but", "B": "and", "C": "so", "D": "nor"}, "ans": "A", "expl": "Hy vọng xong đúng hạn >< nhưng không đảm bảo → đối lập → but."}, {"stt": 83, "code": "P5.3", "de": 5, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "How long have you worked for Lawton's? - Only for a few months. I ______ the company as a junior manager last December.", "opts": {"A": "had joined", "B": "joined", "C": "has joined", "D": "would join"}, "ans": "B", "expl": "'last December' = mốc quá khứ cụ thể, đã kết thúc → Quá khứ đơn → joined."}, {"stt": 84, "code": "P5.4", "de": 5, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "The demand for our product ______ significantly since the launch of our new marketing campaign.", "opts": {"A": "was increasing", "B": "has increased", "C": "increased", "D": "had increased"}, "ans": "B", "expl": "Từ khóa 'since' = từ mốc đó đến hiện tại → Hiện tại hoàn thành → has increased."}, {"stt": 85, "code": "P5.5", "de": 5, "phan": "SC", "dang": "C", "dangTen": "Câu điều kiện (Conditionals)", "q": "If I ______ this report, my secretary will send it to the proper department by the deadline.", "opts": {"A": "finish", "B": "finished", "C": "has finished", "D": "will finish"}, "ans": "A", "expl": "Vế chính có 'will send' → Điều kiện LOẠI 1 → vế IF dùng HIỆN TẠI ĐƠN, tuyệt đối không dùng will → finish."}, {"stt": 86, "code": "P5.6", "de": 5, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "They are here ______ holiday, but I am here ______ business.", "opts": {"A": "on ... on", "B": "at ... on", "C": "in ... on", "D": "on ... in"}, "ans": "A", "expl": "Cả hai đều dùng ON: on holiday (đi nghỉ) và on business (đi công tác)."}, {"stt": 87, "code": "P5.7", "de": 5, "phan": "SC", "dang": "D", "dangTen": "Giới từ & Cụm cố định (Prepositions / Collocations)", "q": "My brother thought he would sell his house, but ______ second thoughts he changed his mind.", "opts": {"A": "in", "B": "at", "C": "on", "D": "of"}, "ans": "C", "expl": "Cụm cố định: ON second thoughts = sau khi suy nghĩ lại."}, {"stt": 88, "code": "P5.8", "de": 5, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "Analysis of the commercial building sector in Canada has been ______ enhanced with the release of the Survey.", "opts": {"A": "greater", "B": "great", "C": "greatly", "D": "greatness"}, "ans": "C", "expl": "Chỗ trống đứng giữa 'has been' và phân từ 'enhanced' → cần TRẠNG TỪ → greatly."}, {"stt": 89, "code": "P5.9", "de": 5, "phan": "SC", "dang": "E", "dangTen": "Từ loại (Word Forms)", "q": "Last year's job fair in London was a remarkable ______, drawing over 200,000 participants worldwide.", "opts": {"A": "success", "B": "successful", "C": "succeed", "D": "successfully"}, "ans": "A", "expl": "Chỗ trống đứng SAU 'a remarkable' (mạo từ + tính từ) → cần DANH TỪ → success."}, {"stt": 90, "code": "P5.10", "de": 5, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "Our ______ policy allows you to pay some time after you buy but at no extra cost.", "opts": {"A": "interest-free-credit", "B": "money-back-guarantee", "C": "after-sales-service", "D": "loyalty-customer-scheme"}, "ans": "A", "expl": "Trả sau nhưng không mất thêm phí → interest-free credit (tín dụng không lãi suất)."}, {"stt": 91, "code": "P5.11", "de": 5, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "To succeed in business management, one should have good ______ skills, which means knowing how to deal well with other people.", "opts": {"A": "interpersonal", "B": "negotiation", "C": "time-management", "D": "problem-solving"}, "ans": "A", "expl": "Vế sau giải thích rõ: 'deal well with other people' → interpersonal skills (kỹ năng giao tiếp giữa người với người)."}, {"stt": 92, "code": "P5.12", "de": 5, "phan": "SC", "dang": "F", "dangTen": "Từ vựng thương mại (Business Vocabulary)", "q": "Mary is a very ______ person and she has come up with a lot of interesting ideas for the company's development.", "opts": {"A": "polite", "B": "organized", "C": "friendly", "D": "creative"}, "ans": "D", "expl": "Vế sau nói cô ấy nghĩ ra nhiều ý tưởng thú vị → creative (sáng tạo)."}, {"stt": 93, "code": "P5.13", "de": 5, "phan": "SC", "dang": "G", "dangTen": "Cụm động từ (Phrasal Verbs)", "q": "Employees can ______ tickets to the Christmas party at the front desk in the Personnel Department.", "opts": {"A": "join in", "B": "pick up", "C": "get over", "D": "make out"}, "ans": "B", "expl": "pick up = đến lấy, nhận (vé) tại một địa điểm."}, {"stt": 94, "code": "P5.14", "de": 5, "phan": "SC", "dang": "B", "dangTen": "Chia thì động từ (Verb Tenses)", "q": "John ______ to executive manager of an advertising company since last March.", "opts": {"A": "has been promoted", "B": "was promoted", "C": "has promoted", "D": "was promoting"}, "ans": "A", "expl": "'since last March' → Hiện tại hoàn thành. John ĐƯỢC thăng chức (bị động) → has been promoted."}, {"stt": 95, "code": "P5.15", "de": 5, "phan": "SC", "dang": "H", "dangTen": "Cấu trúc động từ đặc biệt (Verb Patterns)", "q": "While attending the seminar, we really enjoyed ______ with representatives from other branches.", "opts": {"A": "talk", "B": "talked", "C": "to talk", "D": "talking"}, "ans": "D", "expl": "Động từ ENJOY luôn đi với V-ing → talking. (Nhóm động từ + V-ing: enjoy, suggest, admit, avoid, finish, mind.)"}, {"stt": 96, "code": "P5.16", "de": 5, "phan": "ED", "dang": "F5", "dangTen": "Lỗi so sánh", "q": "This quarter's sales figures are ______ than those of last year.", "opts": {"A": "sales figures", "B": "more better", "C": "those", "D": "of"}, "ans": "B", "expl": "'better' đã là dạng so sánh hơn của 'good' rồi → KHÔNG được thêm 'more' vào trước (lỗi so sánh kép). (Sửa thành: better)"}, {"stt": 97, "code": "P5.17", "de": 5, "phan": "ED", "dang": "F7", "dangTen": "Đại từ, mạo từ, thì", "q": "She was appointed as the head of ______ finance department last month.", "opts": {"A": "appointed", "B": "as", "C": "a", "D": "department"}, "ans": "C", "expl": "'finance department' ở đây là phòng ban CỤ THỂ, xác định trong công ty → dùng mạo từ xác định 'the'. (Sửa thành: the)"}, {"stt": 98, "code": "P5.18", "de": 5, "phan": "ED", "dang": "F3", "dangTen": "Dùng sai từ loại (động từ thay cho danh từ)", "q": "There has been a steady ______ in customer satisfaction.", "opts": {"A": "There", "B": "steady", "C": "improve", "D": "satisfaction"}, "ans": "C", "expl": "Sau 'a steady' (mạo từ + tính từ) cần DANH TỪ. 'improve' là động từ → phải đổi thành 'improvement'. (Sửa thành: improvement)"}, {"stt": 99, "code": "P5.19", "de": 5, "phan": "ED", "dang": "F1", "dangTen": "Danh từ không đếm được bị thêm 's'", "q": "Before approving the plan, the manager asked for more ______ from the team.", "opts": {"A": "approving", "B": "asked", "C": "for", "D": "advices"}, "ans": "D", "expl": "'advice' là danh từ KHÔNG ĐẾM ĐƯỢC → không bao giờ thêm 's'. (Sửa thành: advice)"}, {"stt": 100, "code": "P5.20", "de": 5, "phan": "ED", "dang": "F4", "dangTen": "Sai cấu trúc cố định sau động từ", "q": "The report was so detailed that it took too long ______.", "opts": {"A": "so", "B": "detailed", "C": "took", "D": "completing"}, "ans": "D", "expl": "Cấu trúc: it takes + time + TO V (không dùng V-ing) → took too long to complete. (Sửa thành: to complete)"}]</script>
+<script id="vocab-holder" type="application/json">[{"w": "therefore", "ipa": "/ˈðeərfɔːr/", "pos": "adverb", "vn": "vì vậy, do đó", "vnCore": "vì vậy", "ex": "The sales figures were low, therefore, we changed our strategy.", "blank": "The sales figures were low, therefore, we changed our strategy."}, {"w": "otherwise", "ipa": "/ˈʌðərwaɪz/", "pos": "adverb", "vn": "nếu không thì", "vnCore": "nếu không", "ex": "Please confirm today, otherwise we will cancel the booking.", "blank": "Please confirm today, otherwise we will cancel the booking."}, {"w": "upgrade", "ipa": "/ˈʌpɡreɪd/", "pos": "verb", "vn": "nâng cấp", "vnCore": "nâng cấp", "ex": "The company decided to upgrade its computer systems.", "blank": "The company decided to upgrade its computer systems."}, {"w": "infrastructure", "ipa": "/ˈɪnfrəstrʌktʃər/", "pos": "noun", "vn": "cơ sở hạ tầng", "vnCore": "cơ sở hạ tầng", "ex": "The city invested heavily in transport infrastructure.", "blank": "The city invested heavily in transport infrastructure."}, {"w": "efficiently", "ipa": "/ɪˈfɪʃntli/", "pos": "adverb", "vn": "một cách hiệu quả", "vnCore": "hiệu quả", "ex": "The new software helps employees work more efficiently.", "blank": "The new software helps employees work more efficiently."}, {"w": "consumer", "ipa": "/kənˈsjuːmər/", "pos": "noun", "vn": "người tiêu dùng", "vnCore": "người tiêu dùng", "ex": "Consumers are becoming more interested in eco-friendly products.", "blank": "Every business should listen carefully to what the consumer wants."}, {"w": "advertising", "ipa": "/ˈædvərtaɪzɪŋ/", "pos": "noun", "vn": "quảng cáo", "vnCore": "quảng cáo", "ex": "The company spends a lot on advertising every year.", "blank": "The company spends a lot on advertising every year."}, {"w": "promote", "ipa": "/prəˈmoʊt/", "pos": "verb", "vn": "quảng bá; thăng chức", "vnCore": "quảng bá", "ex": "They launched a campaign to promote the new product.", "blank": "They launched a campaign to promote the new product."}, {"w": "appeal to", "ipa": "/əˈpiːl tuː/", "pos": "phrasal verb", "vn": "thu hút, hấp dẫn", "vnCore": "thu hút", "ex": "This design is meant to appeal to younger customers.", "blank": "This design is meant to appeal to younger customers."}, {"w": "align", "ipa": "/əˈlaɪn/", "pos": "verb", "vn": "gắn kết, phù hợp với", "vnCore": "gắn kết", "ex": "Our new strategy aligns with the company's long-term goals.", "blank": "It is important that our marketing plan align with the company's overall strategy."}, {"w": "strategy", "ipa": "/ˈstrætədʒi/", "pos": "noun", "vn": "chiến lược", "vnCore": "chiến lược", "ex": "The board approved a new marketing strategy.", "blank": "The board approved a new marketing strategy."}, {"w": "skilled", "ipa": "/skɪld/", "pos": "adjective", "vn": "có kỹ năng, lành nghề", "vnCore": "có kỹ năng", "ex": "She is a highly skilled negotiator.", "blank": "She is a highly skilled negotiator."}, {"w": "resolve", "ipa": "/rɪˈzɒlv/", "pos": "verb", "vn": "giải quyết", "vnCore": "giải quyết", "ex": "The team worked hard to resolve the customer's complaint.", "blank": "The team worked hard to resolve the customer's complaint."}, {"w": "complex", "ipa": "/ˈkɒmpleks/", "pos": "adjective", "vn": "phức tạp", "vnCore": "phức tạp", "ex": "This is a complex issue that requires careful analysis.", "blank": "This is a complex issue that requires careful analysis."}, {"w": "satisfaction", "ipa": "/ˌsætɪsˈfækʃn/", "pos": "noun", "vn": "sự hài lòng", "vnCore": "hài lòng", "ex": "Customer satisfaction is our top priority.", "blank": "Customer satisfaction is our top priority."}, {"w": "expansion", "ipa": "/ɪkˈspænʃn/", "pos": "noun", "vn": "sự mở rộng", "vnCore": "mở rộng", "ex": "The company is planning an expansion into new markets.", "blank": "The company is planning an expansion into new markets."}, {"w": "workforce", "ipa": "/ˈwɜːrkfɔːrs/", "pos": "noun", "vn": "lực lượng lao động", "vnCore": "lực lượng lao động", "ex": "The factory has a workforce of over 500 people.", "blank": "The factory has a workforce of over 500 people."}, {"w": "investment", "ipa": "/ɪnˈvestmənt/", "pos": "noun", "vn": "sự đầu tư", "vnCore": "đầu tư", "ex": "This project requires a significant investment.", "blank": "This project requires a significant investment."}, {"w": "promotional", "ipa": "/prəˈmoʊʃənl/", "pos": "adjective", "vn": "(thuộc) khuyến mãi", "vnCore": "khuyến mãi", "ex": "We are running a promotional offer this month.", "blank": "We are running a promotional offer this month."}, {"w": "campaign", "ipa": "/kæmˈpeɪn/", "pos": "noun", "vn": "chiến dịch", "vnCore": "chiến dịch", "ex": "The marketing campaign was very successful.", "blank": "The marketing campaign was very successful."}, {"w": "contract", "ipa": "/ˈkɒntrækt/", "pos": "noun", "vn": "hợp đồng", "vnCore": "hợp đồng", "ex": "Both companies signed a three-year contract.", "blank": "Both companies signed a three-year contract."}, {"w": "renovation", "ipa": "/ˌrenəˈveɪʃn/", "pos": "noun", "vn": "sự cải tạo, tu sửa", "vnCore": "cải tạo", "ex": "The office renovation will take about two months.", "blank": "The office renovation will take about two months."}, {"w": "candidate", "ipa": "/ˈkændɪdət/", "pos": "noun", "vn": "ứng viên", "vnCore": "ứng viên", "ex": "We interviewed five candidates for the position.", "blank": "Every candidate must submit a resume before the interview."}, {"w": "short-listed", "ipa": "/ˈʃɔːrtlɪstɪd/", "pos": "adjective", "vn": "được đưa vào danh sách rút gọn", "vnCore": "vào danh sách rút gọn", "ex": "Three applicants have been short-listed for the final round.", "blank": "Three applicants have been short-listed for the final round."}, {"w": "budget", "ipa": "/ˈbʌdʒɪt/", "pos": "noun", "vn": "ngân sách", "vnCore": "ngân sách", "ex": "The marketing budget was increased this year.", "blank": "The marketing budget was increased this year."}, {"w": "estimate", "ipa": "/ˈestɪmeɪt/", "pos": "verb", "vn": "ước tính", "vnCore": "ước tính", "ex": "We estimate the project will cost about $10,000.", "blank": "We estimate the project will cost about $10,000."}, {"w": "competitor", "ipa": "/kəmˈpetɪtər/", "pos": "noun", "vn": "đối thủ cạnh tranh", "vnCore": "đối thủ cạnh tranh", "ex": "Our main competitor just launched a similar product.", "blank": "Our main competitor just launched a similar product."}, {"w": "take over", "ipa": "/teɪk ˈoʊvər/", "pos": "phrasal verb", "vn": "tiếp quản, thâu tóm", "vnCore": "tiếp quản", "ex": "The larger firm plans to take over its smaller rival.", "blank": "The larger firm plans to take over its smaller rival."}, {"w": "enhance", "ipa": "/ɪnˈhæns/", "pos": "verb", "vn": "nâng cao, cải thiện", "vnCore": "nâng cao", "ex": "The update will enhance the app's performance.", "blank": "The update will enhance the app's performance."}, {"w": "premises", "ipa": "/ˈpremɪsɪz/", "pos": "noun", "vn": "cơ sở, trụ sở", "vnCore": "trụ sở", "ex": "Visitors must sign in before entering the premises.", "blank": "Visitors must sign in before entering the premises."}, {"w": "merchandise", "ipa": "/ˈmɜːrtʃəndaɪz/", "pos": "noun", "vn": "hàng hóa", "vnCore": "hàng hóa", "ex": "The merchandise was shipped directly from the factory.", "blank": "The merchandise was shipped directly from the factory."}, {"w": "warehouse", "ipa": "/ˈweərhaʊs/", "pos": "noun", "vn": "nhà kho", "vnCore": "nhà kho", "ex": "The goods are stored in a large warehouse.", "blank": "The goods are stored in a large warehouse."}, {"w": "compensation", "ipa": "/ˌkɒmpenˈseɪʃn/", "pos": "noun", "vn": "sự bồi thường", "vnCore": "bồi thường", "ex": "The company paid compensation for the delayed shipment.", "blank": "The company paid compensation for the delayed shipment."}, {"w": "incur", "ipa": "/ɪnˈkɜːr/", "pos": "verb", "vn": "phải gánh chịu (chi phí)", "vnCore": "phải gánh chịu", "ex": "The delay caused the firm to incur extra costs.", "blank": "The delay caused the firm to incur extra costs."}, {"w": "advantage", "ipa": "/ədˈvɑːntɪdʒ/", "pos": "noun", "vn": "lợi thế", "vnCore": "lợi thế", "ex": "Customers can take advantage of the special discount.", "blank": "Customers can take advantage of the special discount."}, {"w": "scheme", "ipa": "/skiːm/", "pos": "noun", "vn": "kế hoạch, chương trình", "vnCore": "kế hoạch", "ex": "The government introduced a new tax scheme.", "blank": "The government introduced a new tax scheme."}, {"w": "encourage", "ipa": "/ɪnˈkʌrɪdʒ/", "pos": "verb", "vn": "khuyến khích", "vnCore": "khuyến khích", "ex": "The manager encouraged the team to share new ideas.", "blank": "Managers should encourage their team to share new ideas."}, {"w": "demand", "ipa": "/dɪˈmɑːnd/", "pos": "noun", "vn": "nhu cầu", "vnCore": "nhu cầu", "ex": "Demand for the product increased sharply.", "blank": "Demand for the product increased sharply."}, {"w": "revenue", "ipa": "/ˈrevənjuː/", "pos": "noun", "vn": "doanh thu", "vnCore": "doanh thu", "ex": "The company's revenue grew by 15% last year.", "blank": "The company's revenue grew by 15% last year."}, {"w": "interpersonal", "ipa": "/ˌɪntərˈpɜːrsənl/", "pos": "adjective", "vn": "(kỹ năng) giao tiếp giữa các cá nhân", "vnCore": "giao tiếp cá nhân", "ex": "Good interpersonal skills are essential in this job.", "blank": "Good interpersonal skills are essential in this job."}, {"w": "negotiation", "ipa": "/nɪˌɡoʊʃiˈeɪʃn/", "pos": "noun", "vn": "sự đàm phán", "vnCore": "đàm phán", "ex": "The negotiation lasted for several hours.", "blank": "The negotiation lasted for several hours."}, {"w": "organized", "ipa": "/ˈɔːrɡənaɪzd/", "pos": "adjective", "vn": "có tổ chức, ngăn nắp", "vnCore": "có tổ chức", "ex": "She is a very organized manager.", "blank": "She is a very organized manager."}, {"w": "creative", "ipa": "/kriˈeɪtɪv/", "pos": "adjective", "vn": "sáng tạo", "vnCore": "sáng tạo", "ex": "The team came up with a creative solution.", "blank": "The team came up with a creative solution."}, {"w": "stand for", "ipa": "/stænd fɔːr/", "pos": "phrasal verb", "vn": "viết tắt cho, đại diện cho", "vnCore": "viết tắt cho", "ex": "The letters CEO stand for Chief Executive Officer.", "blank": "The letters CEO stand for Chief Executive Officer."}, {"w": "wholesaler", "ipa": "/ˈhoʊlseɪlər/", "pos": "noun", "vn": "nhà bán buôn", "vnCore": "nhà bán buôn", "ex": "The wholesaler supplies goods to many small shops.", "blank": "The wholesaler supplies goods to many small shops."}, {"w": "retailer", "ipa": "/ˈriːteɪlər/", "pos": "noun", "vn": "nhà bán lẻ", "vnCore": "nhà bán lẻ", "ex": "The retailer sells directly to customers.", "blank": "The retailer sells directly to customers."}, {"w": "take off", "ipa": "/teɪk ɔːf/", "pos": "phrasal verb", "vn": "trở nên phổ biến/thành công nhanh chóng", "vnCore": "trở nên phổ biến nhanh", "ex": "Sales of the new phone really took off last month.", "blank": "We hope this new product will take off in the market."}, {"w": "give away", "ipa": "/ɡɪv əˈweɪ/", "pos": "phrasal verb", "vn": "tặng miễn phí", "vnCore": "tặng miễn phí", "ex": "The store is giving away free samples this week.", "blank": "The store plans to give away free samples this week."}, {"w": "keep up with", "ipa": "/kiːp ʌp wɪð/", "pos": "phrasal verb", "vn": "theo kịp", "vnCore": "theo kịp", "ex": "The factory struggled to keep up with rising demand.", "blank": "The factory struggled to keep up with rising demand."}, {"w": "shipment", "ipa": "/ˈʃɪpmənt/", "pos": "noun", "vn": "lô hàng", "vnCore": "lô hàng", "ex": "The shipment is expected to arrive next Monday.", "blank": "The shipment is expected to arrive next Monday."}, {"w": "workshop", "ipa": "/ˈwɜːrkʃɒp/", "pos": "noun", "vn": "buổi hội thảo, khóa tập huấn", "vnCore": "buổi hội thảo", "ex": "She attended a workshop on digital marketing.", "blank": "She attended a workshop on digital marketing."}]</script>
+<script>
+const QUESTIONS = JSON.parse(document.getElementById('data-holder').textContent);
+const VOCAB = JSON.parse(document.getElementById('vocab-holder').textContent);
+const DE_COUNT = 5;
+
+// ---- derive dạng list with counts ----
+const dangMap = {};
+QUESTIONS.forEach(q=>{
+  if(!dangMap[q.dang]) dangMap[q.dang] = {key:q.dang, name:q.dangTen, count:0, phan:q.phan};
+  dangMap[q.dang].count++;
+});
+const dangList = Object.values(dangMap).sort((a,b)=> b.count - a.count);
+
+// ---- progress store (public version: local device only, no account sync) ----
+let progress = {}; // code -> {attempts, correct, lastCorrect}
+let vocabProgress = {}; // "word|direction" -> {seen, known}
+let syncOn = false; // this build never syncs to an account — always false
+
+function loadLocal(){
+  try{
+    const raw = localStorage.getItem('vstep_progress_v1');
+    if(raw) progress = JSON.parse(raw);
+  }catch(e){}
+  try{
+    const raw2 = localStorage.getItem('vstep_vocab_progress_v1');
+    if(raw2) vocabProgress = JSON.parse(raw2);
+  }catch(e){}
+}
+function saveLocal(){
+  try{ localStorage.setItem('vstep_progress_v1', JSON.stringify(progress)); }catch(e){}
+  try{ localStorage.setItem('vstep_vocab_progress_v1', JSON.stringify(vocabProgress)); }catch(e){}
+}
+
+function persistProgress(){
+  saveLocal();
+}
+
+function updateSyncBadge(){
+  const lbl = document.getElementById('synclbl');
+  if(lbl) lbl.textContent = 'Lưu trên máy này (bản chia sẻ công khai)';
+}
+
+function recordAnswer(code, correct){
+  const p = progress[code] || {attempts:0, correct:0, lastCorrect:null};
+  p.attempts++;
+  if(correct) p.correct++;
+  p.lastCorrect = correct;
+  progress[code] = p;
+  persistProgress();
+}
+
+function recordVocab(word, direction, known){
+  const key = word+'|'+direction;
+  const p = vocabProgress[key] || {seen:0, known:0, lastKnown:null};
+  p.seen++;
+  if(known) p.known++;
+  p.lastKnown = known;
+  vocabProgress[key] = p;
+  persistProgress();
+}
+
+// ---- utils ----
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function byCode(code){ return QUESTIONS.find(q=>q.code===code); }
+
+// ---- app state ----
+let session = null; // {list, idx, score, mode, deLabel, timerSec, timerHandle}
+let flashSession = null; // {words, idx, direction, flipped, known, unknown}
+let typeSession = null; // {words, idx, mode, correctCount, wrongCount}
+const app = document.getElementById('app');
+const tabsEl = document.getElementById('tabs');
+
+tabsEl.addEventListener('click', (e)=>{
+  const t = e.target.closest('.tab');
+  if(!t) return;
+  [...tabsEl.children].forEach(c=>c.classList.remove('active'));
+  t.classList.add('active');
+  session = null;
+  flashSession = null;
+  typeSession = null;
+  if(t.dataset.tab === 'home') renderHome();
+  else if(t.dataset.tab === 'vocab') renderVocabHome();
+  else renderDashboard();
+});
+
+function renderHome(){
+  const wrongCodes = Object.keys(progress).filter(c=>progress[c].lastCorrect===false);
+  app.innerHTML = `
+    <div class="card">
+      <div class="sync-badge" style="margin-bottom:12px">
+        <span class="dot" id="syncdot"></span><span id="synclbl">Lưu trên máy này</span>
+      </div>
+      <b style="font-size:14px;display:block;margin-bottom:10px">Ôn theo Đề (mô phỏng thi thật)</b>
+      <div class="grid" id="de-grid"></div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:10px">Ôn theo dạng / họ bẫy</b>
+      <div class="grid" id="dang-grid"></div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:10px">Khác</b>
+      <div class="grid">
+        <div class="chip-btn" id="btn-all"><b>Ôn ngẫu nhiên</b><small>Cả 100 câu, trộn ngẫu nhiên</small></div>
+        <div class="chip-btn" id="btn-wrong"><b>Chỉ câu đã sai</b><small>${wrongCodes.length} câu cần ôn lại</small></div>
+      </div>
+    </div>
+  `;
+  updateSyncBadge();
+  const deGrid = document.getElementById('de-grid');
+  for(let de=1; de<=DE_COUNT; de++){
+    const codes = QUESTIONS.filter(q=>q.de===de).map(q=>q.code);
+    const done = codes.filter(c=>progress[c]).length;
+    const div = document.createElement('div');
+    div.className='chip-btn';
+    div.innerHTML = `<b>Đề tổng hợp ${de}</b><small>20 câu · đã làm ${done}/20</small>`;
+    div.onclick = ()=> startSession(codes, `Đề tổng hợp ${de}`, true);
+    deGrid.appendChild(div);
+  }
+  const dangGrid = document.getElementById('dang-grid');
+  dangList.forEach(d=>{
+    const div = document.createElement('div');
+    div.className='chip-btn';
+    div.innerHTML = `<b>${d.name}</b><small>${d.count} câu</small>`;
+    div.onclick = ()=>{
+      const codes = QUESTIONS.filter(q=>q.dang===d.key).map(q=>q.code);
+      startSession(codes, d.name, false);
+    };
+    dangGrid.appendChild(div);
+  });
+  document.getElementById('btn-all').onclick = ()=>{
+    startSession(shuffle(QUESTIONS.map(q=>q.code)), 'Ôn ngẫu nhiên 100 câu', false);
+  };
+  document.getElementById('btn-wrong').onclick = ()=>{
+    if(wrongCodes.length===0){ alert('Bạn chưa có câu nào sai — hãy làm vài đề trước đã.'); return; }
+    startSession(shuffle(wrongCodes), 'Ôn lại câu đã sai', false);
+  };
+}
+
+function startSession(codes, label, timed){
+  session = { codes, idx:0, score:0, label, timed, secondsLeft: timed ? 15*60 : null, timerHandle:null };
+  if(timed){
+    session.timerHandle = setInterval(()=>{
+      if(!session) return;
+      session.secondsLeft--;
+      const t = document.getElementById('timer-display');
+      if(t) t.textContent = fmtTime(session.secondsLeft);
+      if(session.secondsLeft<=0){ clearInterval(session.timerHandle); }
+    }, 1000);
+  }
+  renderQuestion();
+}
+
+function fmtTime(s){
+  if(s<0) s=0;
+  const m = Math.floor(s/60), sec = s%60;
+  return `${m}:${String(sec).padStart(2,'0')}`;
+}
+
+function renderQuestion(){
+  if(!session) return;
+  const code = session.codes[session.idx];
+  const q = byCode(code);
+  const total = session.codes.length;
+  const pct = Math.round((session.idx/total)*100);
+
+  app.innerHTML = `
+    <div class="card">
+      <div class="meta-row">
+        <span>${session.label} — Câu ${session.idx+1}/${total}</span>
+        ${session.timed ? `<span class="timer" id="timer-display">${fmtTime(session.secondsLeft)}</span>` : `<span>${q.phan==='ED'?'Error Detection':'Sentence Completion'}</span>`}
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <p class="qtext">${escapeHtml(q.q)}</p>
+      <div id="opts"></div>
+      <div id="explain-holder"></div>
+      <div class="btnrow" id="btnrow" style="display:none">
+        <button class="primary" id="next-btn">Câu tiếp theo →</button>
+      </div>
+    </div>
+  `;
+  const optsEl = document.getElementById('opts');
+  ['A','B','C','D'].forEach(letter=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = `<b>${letter}.</b> ${escapeHtml(q.opts[letter])}`;
+    btn.onclick = ()=> selectAnswer(letter, q, btn);
+    optsEl.appendChild(btn);
+  });
+  document.getElementById('next-btn').onclick = nextQuestion;
+}
+
+function selectAnswer(letter, q, btnEl){
+  if(btnEl.dataset.locked) return;
+  const correct = letter === q.ans;
+  [...document.getElementById('opts').children].forEach(b=>{
+    b.dataset.locked = '1';
+    b.disabled = true;
+    const l = b.querySelector('b').textContent[0];
+    if(l === q.ans) b.classList.add('correct');
+    else if(l === letter && !correct) b.classList.add('wrong');
+  });
+  const holder = document.getElementById('explain-holder');
+  holder.innerHTML = `<div class="explain ${correct?'ok':'bad'}">${correct? '✓ Đúng vì: ' : ('✗ Sai. Đáp án đúng là '+q.ans+'. ')}${escapeHtml(q.expl)}</div>`;
+  document.getElementById('btnrow').style.display = 'flex';
+  recordAnswer(q.code, correct);
+  if(correct) session.score++;
+}
+
+function nextQuestion(){
+  if(!session) return;
+  session.idx++;
+  if(session.idx >= session.codes.length){
+    if(session.timerHandle) clearInterval(session.timerHandle);
+    renderSummary();
+  } else {
+    renderQuestion();
+  }
+}
+
+function renderSummary(){
+  const total = session.codes.length;
+  const pct = Math.round((session.score/total)*100);
+  app.innerHTML = `
+    <div class="card" style="text-align:center">
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 6px">${session.label} — hoàn thành</p>
+      <p style="font-size:34px;font-weight:700;color:var(--accent-2);margin:0 0 4px">${session.score}/${total}</p>
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 18px">${pct}% chính xác</p>
+      <div class="btnrow">
+        <button class="ghost" id="back-home">Về trang chính</button>
+        <button class="primary" id="retry-btn">Làm lại</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('back-home').onclick = ()=>{
+    [...tabsEl.children].forEach(c=>c.classList.remove('active'));
+    tabsEl.children[0].classList.add('active');
+    renderHome();
+  };
+  document.getElementById('retry-btn').onclick = ()=> startSession(session.codes, session.label, session.timed);
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ---- dashboard ----
+function renderDashboard(){
+  const attempted = Object.keys(progress).length;
+  const correct = Object.values(progress).filter(p=>p.lastCorrect===true).length;
+  const overallPct = attempted ? Math.round((correct/attempted)*100) : 0;
+
+  const enVnDone = VOCAB.filter(v=>vocabProgress[v.w+'|enVn']);
+  const enVnKnown = enVnDone.filter(v=>vocabStat(v.w,'enVn').lastKnown===true).length;
+  const vnEnDone = VOCAB.filter(v=>vocabProgress[v.w+'|vnEn']);
+  const vnEnKnown = vnEnDone.filter(v=>vocabStat(v.w,'vnEn').lastKnown===true).length;
+  const blankDone = VOCAB.filter(v=>vocabProgress[v.w+'|blank']);
+  const blankKnown = blankDone.filter(v=>vocabStat(v.w,'blank').lastKnown===true).length;
+
+  let rows = '';
+  dangList.forEach(d=>{
+    const codes = QUESTIONS.filter(q=>q.dang===d.key).map(q=>q.code);
+    const done = codes.filter(c=>progress[c]);
+    const cor = done.filter(c=>progress[c].lastCorrect===true).length;
+    const p = done.length ? Math.round((cor/done.length)*100) : null;
+    const pctClass = p===null ? '' : (p<60?'low':(p>=80?'high':'mid'));
+    rows += `<tr>
+      <td>${escapeHtml(d.name)}</td>
+      <td>${done.length}/${d.count}</td>
+      <td>${p===null?'—':`<span class="pct ${pctClass}">${p}%</span>`}</td>
+    </tr>`;
+  });
+
+  const vEnVnPct = enVnDone.length ? Math.round((enVnKnown/enVnDone.length)*100) : null;
+  const vVnEnPct = vnEnDone.length ? Math.round((vnEnKnown/vnEnDone.length)*100) : null;
+
+  app.innerHTML = `
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:10px">Ngữ pháp — 100 câu Practice 1-5</b>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">${attempted}/100</div><div class="lbl">Đã làm</div></div>
+        <div class="stat"><div class="num">${correct}</div><div class="lbl">Đúng</div></div>
+        <div class="stat"><div class="num">${overallPct}%</div><div class="lbl">Chính xác</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:10px">Từ vựng — 51 từ Business English</b>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">${enVnDone.length}/51</div><div class="lbl">Anh→Việt đã ôn</div></div>
+        <div class="stat"><div class="num">${vEnVnPct===null?'—':vEnVnPct+'%'}</div><div class="lbl">Anh→Việt đã thuộc</div></div>
+      </div>
+      <div class="stat-grid" style="margin-top:10px">
+        <div class="stat"><div class="num">${vnEnDone.length}/51</div><div class="lbl">Việt→Anh đã ôn</div></div>
+        <div class="stat"><div class="num">${vVnEnPct===null?'—':vVnEnPct+'%'}</div><div class="lbl">Việt→Anh đã thuộc</div></div>
+      </div>
+      <div class="stat-grid" style="margin-top:10px">
+        <div class="stat"><div class="num">${blankDone.length}/51</div><div class="lbl">Điền câu đã ôn</div></div>
+        <div class="stat"><div class="num">${blankDone.length?Math.round((blankKnown/blankDone.length)*100)+'%':'—'}</div><div class="lbl">Điền câu chính xác</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:10px">Phân tích ngữ pháp theo dạng / họ bẫy</b>
+      ${attempted===0 ? '<p class="empty">Chưa có dữ liệu — hãy làm vài câu ở tab Ngữ pháp trước.</p>' :
+      `<table><thead><tr><th>Dạng</th><th>Đã làm</th><th>% đúng</th></tr></thead><tbody>${rows}</tbody></table>`}
+    </div>
+  `;
+}
+
+// ---- vocab flashcard mode ----
+function vocabStat(word, direction){
+  const key = word+'|'+direction;
+  return vocabProgress[key] || {seen:0, known:0, lastKnown:null};
+}
+
+function renderVocabHome(){
+  const enVnDone = VOCAB.filter(v=>vocabProgress[v.w+'|enVn']).length;
+  const vnEnDone = VOCAB.filter(v=>vocabProgress[v.w+'|vnEn']).length;
+  const blankDone = VOCAB.filter(v=>vocabProgress[v.w+'|blank']).length;
+  const enVnUnknown = VOCAB.filter(v=>vocabStat(v.w,'enVn').lastKnown===false).length;
+  const vnEnUnknown = VOCAB.filter(v=>vocabStat(v.w,'vnEn').lastKnown===false).length;
+  app.innerHTML = `
+    <div class="card">
+      <div class="sync-badge" style="margin-bottom:12px">
+        <span class="dot" id="syncdot"></span><span id="synclbl">Lưu trên máy này</span>
+      </div>
+      <b style="font-size:14px;display:block;margin-bottom:4px">1. Flashcard — nhận diện nhanh</b>
+      <p style="font-size:12px;color:var(--text-2);margin:0 0 10px">Xem rồi tự đánh giá đã thuộc chưa</p>
+      <div class="grid">
+        <div class="chip-btn" id="v-envn"><b>Anh → Việt</b><small>Xem từ, đoán nghĩa · đã ôn ${enVnDone}/51</small></div>
+        <div class="chip-btn" id="v-vnen"><b>Việt → Anh</b><small>Xem nghĩa, đoán từ · đã ôn ${vnEnDone}/51</small></div>
+      </div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:4px">2. Điền nghĩa — gõ đáp án (nhớ kỹ hơn)</b>
+      <p style="font-size:12px;color:var(--text-2);margin:0 0 10px">Phải tự gõ ra, không chỉ nhận diện — giúp nhớ lâu hơn flashcard</p>
+      <div class="grid">
+        <div class="chip-btn" id="v-type-envn"><b>Anh → Việt</b><small>Gõ nghĩa tiếng Việt của từ</small></div>
+        <div class="chip-btn" id="v-type-vnen"><b>Việt → Anh</b><small>Gõ lại từ tiếng Anh</small></div>
+      </div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:4px">3. Điền từ vào câu</b>
+      <p style="font-size:12px;color:var(--text-2);margin:0 0 10px">Đọc câu ví dụ, điền đúng từ còn thiếu — luyện dùng từ trong ngữ cảnh</p>
+      <div class="chip-btn" id="v-type-blank" style="grid-column:1/-1"><b>Điền từ còn thiếu</b><small>51 câu ví dụ · đã ôn ${blankDone}/51</small></div>
+    </div>
+    <div class="card">
+      <b style="font-size:14px;display:block;margin-bottom:10px">Chỉ ôn từ chưa thuộc (Flashcard)</b>
+      <div class="grid">
+        <div class="chip-btn" id="v-envn-wrong"><b>Anh → Việt</b><small>${enVnUnknown} từ chưa thuộc</small></div>
+        <div class="chip-btn" id="v-vnen-wrong"><b>Việt → Anh</b><small>${vnEnUnknown} từ chưa thuộc</small></div>
+      </div>
+    </div>
+  `;
+  updateSyncBadge();
+  document.getElementById('v-envn').onclick = ()=> startFlash(shuffle(VOCAB), 'enVn', 'Anh → Việt (tất cả)');
+  document.getElementById('v-vnen').onclick = ()=> startFlash(shuffle(VOCAB), 'vnEn', 'Việt → Anh (tất cả)');
+  document.getElementById('v-type-envn').onclick = ()=> startType(shuffle(VOCAB), 'envn', 'Điền nghĩa: Anh → Việt');
+  document.getElementById('v-type-vnen').onclick = ()=> startType(shuffle(VOCAB), 'vnen', 'Điền nghĩa: Việt → Anh');
+  document.getElementById('v-type-blank').onclick = ()=> startType(shuffle(VOCAB), 'blank', 'Điền từ còn thiếu trong câu');
+  document.getElementById('v-envn-wrong').onclick = ()=>{
+    const list = shuffle(VOCAB.filter(v=>vocabStat(v.w,'enVn').lastKnown===false));
+    if(!list.length){ alert('Chưa có từ nào đánh dấu "chưa thuộc" ở chiều này.'); return; }
+    startFlash(list, 'enVn', 'Anh → Việt (ôn lại)');
+  };
+  document.getElementById('v-vnen-wrong').onclick = ()=>{
+    const list = shuffle(VOCAB.filter(v=>vocabStat(v.w,'vnEn').lastKnown===false));
+    if(!list.length){ alert('Chưa có từ nào đánh dấu "chưa thuộc" ở chiều này.'); return; }
+    startFlash(list, 'vnEn', 'Việt → Anh (ôn lại)');
+  };
+}
+
+function startFlash(words, direction, label){
+  flashSession = { words, idx:0, direction, flipped:false, known:0, unknown:0, label };
+  renderFlashCard();
+}
+
+function renderFlashCard(){
+  const fs = flashSession;
+  const v = fs.words[fs.idx];
+  const total = fs.words.length;
+  const pct = Math.round((fs.idx/total)*100);
+  const front = fs.direction==='enVn' ? v.w : v.vn;
+  const frontSub = fs.direction==='enVn' ? v.pos : '';
+  const back = fs.direction==='enVn' ? v.vn : (v.w + (v.ipa?'  '+v.ipa:''));
+
+  app.innerHTML = `
+    <div class="card">
+      <div class="meta-row">
+        <span>${fs.label} — Thẻ ${fs.idx+1}/${total}</span>
+        <span>✓ ${fs.known}  ✗ ${fs.unknown}</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <div class="flash" id="flashcard">
+        <div class="front">${escapeHtml(front)}</div>
+        ${frontSub ? `<div class="sub">${escapeHtml(frontSub)}</div>` : ''}
+        <div id="flash-back"></div>
+      </div>
+      <div id="flash-actions"></div>
+    </div>
+  `;
+  const cardEl = document.getElementById('flashcard');
+  const backHolder = document.getElementById('flash-back');
+  const actionsHolder = document.getElementById('flash-actions');
+  actionsHolder.innerHTML = `<p class="tap" style="text-align:center">Chạm vào thẻ để xem đáp án</p>`;
+
+  cardEl.onclick = ()=>{
+    if(fs.flipped) return;
+    fs.flipped = true;
+    backHolder.innerHTML = `
+      <div class="back">${escapeHtml(back)}</div>
+      <div class="ex">${escapeHtml(v.ex)}</div>
+    `;
+    actionsHolder.innerHTML = `
+      <div class="know-row">
+        <button class="know-btn no" id="know-no">✗ Chưa thuộc</button>
+        <button class="know-btn yes" id="know-yes">✓ Đã thuộc</button>
+      </div>
+    `;
+    document.getElementById('know-no').onclick = ()=> answerFlash(false);
+    document.getElementById('know-yes').onclick = ()=> answerFlash(true);
+  };
+}
+
+function answerFlash(known){
+  const fs = flashSession;
+  const v = fs.words[fs.idx];
+  recordVocab(v.w, fs.direction, known);
+  if(known) fs.known++; else fs.unknown++;
+  fs.idx++;
+  fs.flipped = false;
+  if(fs.idx >= fs.words.length){
+    renderFlashSummary();
+  } else {
+    renderFlashCard();
+  }
+}
+
+function renderFlashSummary(){
+  const fs = flashSession;
+  const total = fs.words.length;
+  const pct = Math.round((fs.known/total)*100);
+  app.innerHTML = `
+    <div class="card" style="text-align:center">
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 6px">${fs.label} — hoàn thành</p>
+      <p style="font-size:34px;font-weight:700;color:var(--accent-2);margin:0 0 4px">${fs.known}/${total}</p>
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 18px">${pct}% đã thuộc</p>
+      <div class="btnrow">
+        <button class="ghost" id="v-back-home">Về Từ vựng</button>
+        <button class="primary" id="v-retry-btn">Làm lại</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('v-back-home').onclick = renderVocabHome;
+  document.getElementById('v-retry-btn').onclick = ()=> startFlash(shuffle(fs.words), fs.direction, fs.label);
+}
+
+// ---- typed-answer practice (điền nghĩa / điền từ vào câu) ----
+function startType(words, mode, label){
+  typeSession = { words, idx:0, mode, label, correctCount:0, wrongCount:0 };
+  renderTypeCard();
+}
+
+function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function renderTypeCard(){
+  const ts = typeSession;
+  const v = ts.words[ts.idx];
+  const total = ts.words.length;
+  const pct = Math.round((ts.idx/total)*100);
+
+  let promptHtml = '';
+  let subHtml = '';
+  if(ts.mode === 'envn'){
+    promptHtml = `<div class="type-prompt">${escapeHtml(v.w)}${v.pos?` <span style="font-size:13px;color:var(--text-2);font-weight:400">(${escapeHtml(v.pos)})</span>`:''}</div>`;
+    subHtml = `<div class="type-sub">Gõ nghĩa tiếng Việt của từ này — không cần đúng 100%, chỉ cần chứa đúng ý chính</div>`;
+  } else if(ts.mode === 'vnen'){
+    promptHtml = `<div class="type-prompt">${escapeHtml(v.vn)}</div>`;
+    subHtml = `<div class="type-sub">Gõ lại từ tiếng Anh tương ứng</div>`;
+  } else {
+    const re = new RegExp(escapeReg(v.w), 'i');
+    const marked = v.blank.replace(re, '<span class="blank-mark">______</span>');
+    promptHtml = `<div class="blank-sentence">${marked}</div>`;
+    subHtml = `<div class="type-sub">Điền từ/cụm từ còn thiếu (tiếng Anh)</div>`;
+  }
+
+  app.innerHTML = `
+    <div class="card">
+      <div class="meta-row">
+        <span>${ts.label} — Câu ${ts.idx+1}/${total}</span>
+        <span>✓ ${ts.correctCount}  ✗ ${ts.wrongCount}</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      ${promptHtml}
+      ${subHtml}
+      <input type="text" class="type-input" id="type-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Gõ câu trả lời rồi bấm Kiểm tra...">
+      <div id="type-feedback-holder"></div>
+      <div class="btnrow" id="type-btnrow">
+        <button class="primary" id="type-check-btn">Kiểm tra</button>
+      </div>
+    </div>
+  `;
+  const input = document.getElementById('type-input');
+  input.focus();
+  const checkBtn = document.getElementById('type-check-btn');
+  const doCheck = ()=> checkTypeAnswer(v, input);
+  checkBtn.onclick = doCheck;
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); doCheck(); } });
+}
+
+function checkTypeAnswer(v, input){
+  if(input.disabled) return;
+  const raw = input.value.trim();
+  let correct = false;
+  let correctAnswerDisplay = '';
+  if(typeSession.mode === 'envn'){
+    correct = raw.length>0 && raw.toLowerCase().includes(v.vnCore.toLowerCase());
+    correctAnswerDisplay = v.vn;
+  } else if(typeSession.mode === 'vnen'){
+    correct = raw.toLowerCase() === v.w.toLowerCase();
+    correctAnswerDisplay = v.w;
+  } else {
+    correct = raw.toLowerCase() === v.w.toLowerCase();
+    correctAnswerDisplay = v.w;
+  }
+  input.disabled = true;
+  input.classList.add(correct ? 'ok' : 'bad');
+  const holder = document.getElementById('type-feedback-holder');
+  let extra = '';
+  if(typeSession.mode === 'envn') extra = `<br><span style="color:var(--text-2)">Ví dụ: ${escapeHtml(v.ex)}</span>`;
+  holder.innerHTML = `<div class="type-feedback ${correct?'ok':'bad'}">${correct?'✓ Đúng!':'✗ Chưa đúng. Đáp án: '+escapeHtml(correctAnswerDisplay)}${extra}</div>`;
+
+  const direction = typeSession.mode==='envn' ? 'enVn' : (typeSession.mode==='vnen' ? 'vnEn' : 'blank');
+  recordVocab(v.w, direction, correct);
+  if(correct) typeSession.correctCount++; else typeSession.wrongCount++;
+
+  document.getElementById('type-btnrow').innerHTML = `<button class="primary" id="type-next-btn">Câu tiếp theo →</button>`;
+  document.getElementById('type-next-btn').onclick = nextTypeCard;
+}
+
+function nextTypeCard(){
+  typeSession.idx++;
+  if(typeSession.idx >= typeSession.words.length){
+    renderTypeSummary();
+  } else {
+    renderTypeCard();
+  }
+}
+
+function renderTypeSummary(){
+  const ts = typeSession;
+  const total = ts.words.length;
+  const pct = Math.round((ts.correctCount/total)*100);
+  app.innerHTML = `
+    <div class="card" style="text-align:center">
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 6px">${ts.label} — hoàn thành</p>
+      <p style="font-size:34px;font-weight:700;color:var(--accent-2);margin:0 0 4px">${ts.correctCount}/${total}</p>
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 18px">${pct}% chính xác</p>
+      <div class="btnrow">
+        <button class="ghost" id="t-back-home">Về Từ vựng</button>
+        <button class="primary" id="t-retry-btn">Làm lại</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('t-back-home').onclick = renderVocabHome;
+  document.getElementById('t-retry-btn').onclick = ()=> startType(shuffle(ts.words), ts.mode, ts.label);
+}
+
+// ---- boot ----
+loadLocal();
+renderHome();
+updateSyncBadge();
+
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
